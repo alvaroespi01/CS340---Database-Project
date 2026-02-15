@@ -1,0 +1,99 @@
+<h1>Tickets</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            <th>Ticket ID</th>
+            <th>Purchase Date</th>
+            <th>Ticket Price</th>
+            <th>Showtime</th>
+            <th>Customer</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each ticket}}
+        <tr>
+            <td>{{this.ticketID}}</td>
+            <td>{{this.purchaseDate}}</td>
+            <td>{{this.ticketPrice}}</td>
+            <td>{{this.showtimeLabel}}</td>
+            <td>{{this.customerName}}</td>
+
+            <td>
+                <a href="/EditTicket">
+                    <button>Edit</button>
+                </a>
+            </td>
+
+            {{! DELETE form }}
+            <form id='delete_ticket_form'>
+                <input type='hidden' name='delete_ticket_id' value='{{this.ticketID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+{{! CREATE form }}
+<h2>Add a Ticket</h2>
+<form class='cuForm' id='create_Ticket_form'>
+    <table>
+        <thead>
+            <tr>
+                <th>Purchase Date</th>
+                <th>Ticket Price</th>
+                <th>Showtime</th>
+                <th>Customer</th>
+                <th>Submit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <td>
+                <input type='datetime-local' name='create_ticket_date' id='create_ticket_date' required />
+            </td>
+            <td>
+                <input type="number" id="create_ticket_price"  placeholder="Enter a Price" step="0.01" min="0" inputmode="decimal">
+            </td>
+            <td>
+                <form class='cuForm' id='create_ticket_form_showtime'>
+                    <select name='create_ticket_showtime' id='create_ticket_showtime' required>
+                        <option value='' disabled selected>Select a Showtime</option>
+                        {{#each showtime}}
+                        <option value='{{this.showtimeID}}' required>
+                            {{this.showtimeLabel}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </form>
+            </td>
+            <td>
+                <form class='cuForm' id='create_ticket_form_customer'>
+                    <select name='create_ticket_customer' id='create_ticket_customer' required>
+                        <option value='' disabled selected>Select a Customer</option>
+                        {{#each customer}}
+                        <option value='{{this.customerID}}' required>
+                            {{this.name}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </form>
+            </td>
+            <td>
+                <button type="submit">Add Showtime</button>
+            </td>
+        </tbody>
+    </table>
+</form>

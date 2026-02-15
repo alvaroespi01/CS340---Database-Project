@@ -1,0 +1,69 @@
+<h1>Screens</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            <th>Screen ID</th>
+            <th>Screen Number</th>
+            <th>Seating Capacity</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each screen}}
+        <tr>
+            <td>{{this.screenID}}</td>
+            <td>{{this.screenNumber}}</td>
+            <td>{{this.seatingCapacity}}</td>
+
+            <td>
+                <a href="/EditScreen">
+                    <button>Edit</button>
+                </a>
+            </td>
+            </td>
+            
+            {{! DELETE form }}
+            <form id='delete_screen_form'>
+                <input type='hidden' name='delete_screen_id' value='{{this.screenID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Add a Screen</h2>
+<form class='cuForm' id='create_screen_form'>
+    <table>
+        <thead>
+            <tr>
+                <th>Screen Number</th>
+                <th>Seating Capacity</th>
+                <th>Submit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <td>
+                <input type='number' name='create_screen_num' id='create_screen_num' required />
+            </td>
+            <td>
+                <input type='number' name='create_screen_capacity' id='create_movie_gcreate_screen_capacityenre' required/>
+            </td>
+            <td>
+                <button type="submit">Add Screen</button>
+            </td>
+        </tbody>
+    </table>
+</form>

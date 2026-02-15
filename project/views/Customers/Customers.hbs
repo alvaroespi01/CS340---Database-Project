@@ -1,0 +1,67 @@
+<h1>Customers</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            <th>Customer ID</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each customer}}
+        <tr>
+            <td>{{this.customerID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+
+            <td>
+                <a href="/EditCustomer">
+                    <button>Edit</button>
+                </a>
+            </td>
+            {{! DELETE form }}
+            <form id='delete_movie_form'>
+                <input type='hidden' name='delete_customer_id' value='{{this.customerID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Add a Customer</h2>
+<form class='cuForm' id='create_customer_form'>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Submit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <td>
+                <input type='text' name='create_customer_name' id='create_customer_name' required />
+            </td>
+            <td>
+                <input type='text' name='create_customer_email' id='create_customer_email'/>
+            </td>
+            <td>
+                <button type="submit">Add Screen</button>
+            </td>
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,69 @@
+<h1>Movies</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            <th>Movie ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each movie}}
+
+
+        <tr>
+            <td>{{this.movieID}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.genre}}</td>
+            <td>{{this.duration}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_movie_form'>
+                <input type='hidden' name='delete_movie_id' value='{{this.id}}' />
+                <input type='hidden' name='delete_movie_title' value='{{this.fname}} {{this.lname}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Add A New Movie</h2>
+<form class='cuForm' id='create_movie_form'>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Duration</th>
+                <th>Submit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <td>
+                <input type='text' name='create_movie_title' id='create_movie_title' required />
+            </td>
+            <td>
+                <input type='text' name='create_movie_genre' id='create_movie_genre' required/>
+            </td>
+            <td>
+                <input type='number' name='create_movie_duration' id='create_movie_duration' min='0' required />
+            </td>
+            <td>
+                <button type="submit">Add Movie</button>
+            </td>
+        </tbody>
+    </table>
+</form>
